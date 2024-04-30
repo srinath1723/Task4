@@ -1,45 +1,25 @@
-const getMedian=function (ar1, ar2)
-{
-    let n=ar1.length
-	let i = 0; 
-	let j = 0; 
-	let count;
-	let m1 = -1, m2 = -1;
+(function(arr1, arr2) {
+    var totalLength = arr1.length + arr2.length;
+    var medianIndex = Math.floor(totalLength / 2);
+    var mergedArray = [];
+    var i = 0, j = 0;
 
-	for (count = 0; count <= n; count++)
-	{
-		
-		if (i == n)
-		{
-			m1 = m2;
-			m2 = ar2[0];
-			break;
-		}
+    for (var k = 0; k <= medianIndex; k++) {
+        if (i < arr1.length && (j >= arr2.length || arr1[i] <= arr2[j])) {
+            mergedArray.push(arr1[i]);
+            i++;
+        } else if (j < arr2.length) {
+            mergedArray.push(arr2[j]);
+            j++;
+        }
+    }
 
-		else if (j == n)
-		{
-			m1 = m2;
-			m2 = ar1[0];
-			break;
-		}
-		
-		if (ar1[i] <= ar2[j])
-		{
-			m1 = m2; 
-			m2 = ar1[i];
-			i++;
-		}
-		else
-		{
-			m1 = m2; 
-			m2 = ar2[j];
-			j++;
-		}
-	}
+    var median;
+    if (totalLength % 2 === 0) {
+        median = (mergedArray[medianIndex - 1] + mergedArray[medianIndex]) / 2;
+    } else {
+        median = mergedArray[medianIndex];
+    }
 
-	return (m1 + m2)/2;
-}
-
-let ar1 = [1, 2, 3, 4, 5];
-let ar2 = [20, 30, 25, 35, 45];
-console.log( getMedian(ar1, ar2));
+    console.log("Median:", median);
+})([1, 3, 5,10], [2, 4, 6,20]); 

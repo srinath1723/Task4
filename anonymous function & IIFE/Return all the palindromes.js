@@ -1,14 +1,11 @@
-const isPalindrome=function (str) {
-    
-    let len = str.length;
-    for (let i = 0; i < len / 2; i++) {
-        if (str[i] !== str[len - 1 - i]) {
-            return false;
-        }
+(function(arr) {
+    function isPalindrome(num) {
+        return num.toString() === num.toString().split('').reverse().join('');
     }
-    return true;
-}
 
-let words = ["level", "radar", "hello", "civic", "world"];
+    var palindromeNumbers = arr.filter(function(num) {
+        return isPalindrome(num);
+    });
 
-console.log(words.filter(isPalindrome));
+    console.log(palindromeNumbers);
+})([121, 123, 131, 45654, 78987, 555]);
